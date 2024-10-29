@@ -1,14 +1,12 @@
 package me.id.core.example;
 
 import me.id.core.schema.Tables;
-import org.jooq.DSLContext;
-import org.jooq.Table;
 import org.jooq.impl.DSL;
 import org.junit.Test;
 
 import java.sql.DriverManager;
 
-public class Examples {
+public class ExamplesTest {
 
     private static String URL = "jdbc:postgresql://localhost:5432/idme_core";
     private static String USER = System.getProperty("user.name");
