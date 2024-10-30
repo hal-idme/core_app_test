@@ -15,7 +15,7 @@
         <jooq.version>3.19.14</jooq.version>
         <jackson.version>2.15.2</jackson.version>
 
-        <db.url>jdbc:postgresql://localhost:5432/idme_core</db.url>
+        <db.url>jdbc:postgresql://localhost:5432</db.url>
     </properties>
 
     <dependencies>
@@ -62,18 +62,68 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
                 <executions>
                     <execution>
+                        <id>idme_core</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
+                        <configuration>
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>${db.url}/idme_core</url>
+                                <user>${user.name}</user>
+                            </jdbc>
+                            <generator>
+                                <target>
+                                    <packageName>me.id.core.schema</packageName>
+                                    <directory>target/generated-sources/jooq</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>idme_authority</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>${db.url}/idme_authority</url>
+                                <user>${user.name}</user>
+                            </jdbc>
+                            <generator>
+                                <target>
+                                    <packageName>me.id.authority.schema</packageName>
+                                    <directory>target/generated-sources/jooq</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>idme_fraud</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>${db.url}/idme_fraud</url>
+                                <user>${user.name}</user>
+                            </jdbc>
+                            <generator>
+                                <target>
+                                    <packageName>me.id.fraud.schema</packageName>
+                                    <directory>target/generated-sources/jooq</directory>
+                                </target>
+                            </generator>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -123,11 +173,6 @@
                         </dependency>
                     </dependencies>
                     <configuration>
-                        <jdbc>
-                            <driver>org.postgresql.Driver</driver>
-                            <url>${db.url}</url>
-                            <user>${user.name}</user>
-                        </jdbc>
                         <generator>
                             <database>
                                 <name>org.jooq.meta.postgres.PostgresDatabase</name>
@@ -140,10 +185,6 @@
                                 </schemata>
                             </database>
                             <generate></generate>
-                            <target>
-                                <packageName>me.id.core.schema</packageName>
-                                <directory>target/generated-sources/jooq</directory>
-                            </target>
                         </generator>
                     </configuration>
                 </plugin>
