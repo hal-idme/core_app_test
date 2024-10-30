@@ -125,6 +125,66 @@
                             </generator>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>idme_core_test</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>${db.url}/idme_core_test</url>
+                                <user>${user.name}</user>
+                            </jdbc>
+                            <generator>
+                                <target>
+                                    <packageName>me.id.core.test.schema</packageName>
+                                    <directory>target/generated-test-sources/jooq</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>idme_authority_test</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>${db.url}/idme_authority_test</url>
+                                <user>${user.name}</user>
+                            </jdbc>
+                            <generator>
+                                <target>
+                                    <packageName>me.id.authority.test.schema</packageName>
+                                    <directory>target/generated-test-sources/jooq</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>idme_fraud_test</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>${db.url}/idme_fraud_test</url>
+                                <user>${user.name}</user>
+                            </jdbc>
+                            <generator>
+                                <target>
+                                    <packageName>me.id.fraud.test.schema</packageName>
+                                    <directory>target/generated-test-sources/jooq</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -142,6 +202,20 @@
                             <sources>
                                 <source>
                                     ${project.basedir}/target/generated-sources/jooq
+                                </source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>
+                                    ${project.basedir}/target/generated-test-sources/jooq
                                 </source>
                             </sources>
                         </configuration>
