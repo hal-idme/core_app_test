@@ -4,8 +4,8 @@ To execute:
 
 Generated code will be in the directory
 
-    _target/generated-sources/jooq_
+    target/generated-sources/jooq
 
 Generated code for test schema in the directory
 
-    _target/generated-test-sources/jooq_
+    target/generated-test-sources/jooq
